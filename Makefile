@@ -23,3 +23,6 @@ publish-client:
 	docker tag  ${CLIENT} ${DOCKER_USER}/${CLIENT}
 	docker push ${DOCKER_USER}/${CLIENT}
 	
+gen_proto:
+	protoc --go_out=plugins=grpc:. ./proto/service.proto
+

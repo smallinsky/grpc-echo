@@ -1,14 +1,25 @@
 TAG ?= echo
 REV = $$(git rev-parse --short HEAD)
+SERVER = ${TAG}-server-${REV}
+CLIENT = ${TAG}-client-${REV}
+DOCKER_USER ?= msmallinsky
 
 
-build-docker:
-	docker build -t ${TAG}-server:${REV} . -f Dockerfile.server
-	docker build -t ${TAG}-client:${REV} . -f Dockerfile.client
+build-docker: build-docker-server build-docker-client
 
-publish:
-	docker tag  ${TAG}-server:${REV} msmallinsky/${TAG}-server:${REV}
-	docker push msmallinsky/${TAG}-server:${REV}
-	docker tag  ${TAG}-client:${REV} msmallinsky/${TAG}-client:${REV}
-	docker push msmallinsky/${TAG}-client:${REV}
+build-docker-server:
+	docker build -t ${SERVER} . -f Dockerfile.server
+
+build-docker-client:
+	docker build -t ${CLIENT} . -f Dockerfile.client
+
+publish: publish-server publish-client
+
+publish-server:
+	docker tag  ${SERVER} ${DOCKER_USER}/${SERVER}
+	docker push ${DOCKER_USER}/${SERVER}
+
+publish-client:
+	docker tag  ${CLIENT} ${DOCKER_USER}/${CLIENT}
+	docker push ${DOCKER_USER}/${CLIENT}
 	

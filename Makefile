@@ -1,7 +1,7 @@
-TAG ?= echo
+SVC_NAME ?= echo
 REV = $$(git rev-parse --short HEAD)
-SERVER = ${TAG}-server-${REV}
-CLIENT = ${TAG}-client-${REV}
+SERVER = ${SVC_NAME}-server:${REV}
+CLIENT = ${SVC_NAME}-client:${REV}
 DOCKER_USER ?= msmallinsky
 
 

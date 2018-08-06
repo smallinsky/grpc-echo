@@ -15,7 +15,7 @@ spec:
       - env:
         - name: COS
           value: bar
-        image: msmallinsky/echo-server:d376760
+        image: msmallinsky/echo-server:bdc164c
         imagePullPolicy: Always
         name: echo-server
         ports:

@@ -15,6 +15,6 @@ spec:
       - env:
         - name: COS
           value: bar
-        image: msmallinsky/echo-client:d376760
+        image: msmallinsky/echo-client:bdc164c
         imagePullPolicy: Always
         name: echo-client

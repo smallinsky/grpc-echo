@@ -4,4 +4,5 @@ RUN go install github.com/smallinsky/grpc-echo/echo-client
 
 FROM alpine:3.7
 COPY --from=0 /go/bin/echo-client /echo-client
+COPY cert /cert
 CMD ["/echo-client"]

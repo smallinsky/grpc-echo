@@ -1,0 +1,7 @@
+FROM golang:1.10.3-alpine3.7
+COPY . /go/src/github.com/smallinsky/service-mesh
+RUN go install github.com/smallinsky/service-mesh/service-client
+
+FROM alpine:3.7
+COPY --from=0 /go/bin/service-client /service-client
+RUN /service-client

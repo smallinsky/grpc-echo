@@ -1,7 +1,7 @@
 FROM golang:1.10.3-alpine3.7
-COPY . /go/src/github.com/smallinsky/service-mesh
-RUN go install github.com/smallinsky/service-mesh/service-echo
+COPY . /go/src/github.com/smallinsky/grpc-echo
+RUN go install github.com/smallinsky/grpc-echo/echo-server
 
 FROM alpine:3.7
-COPY --from=0 /go/bin/service-echo /service-echo
-RUN /service-echo
+COPY --from=0 /go/bin/echo-server /echo-server
+CMD ["/echo-server"]

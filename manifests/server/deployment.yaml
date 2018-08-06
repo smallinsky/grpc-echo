@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echo-server
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: echo-server
+        type: app
+    spec:
+      containers:
+      - env:
+        - name: COS
+          value: bar
+        image: msmallinsky/echo-server:d376760
+        imagePullPolicy: Always
+        name: echo-server
+        ports:
+        - containerPort: 8080
